@@ -179,7 +179,7 @@ var utils = (function () {
 
 	me.extend(me.eventType = {}, {
 		touchstart: 1,
-		touchmove: 1,
+		touchmove: (window.navigator.userAgent && window.navigator.userAgent.indexOf('Windows Phone 10.0') > -1) ? 3 : 1,
 		touchend: 1,
 
 		mousedown: 2,

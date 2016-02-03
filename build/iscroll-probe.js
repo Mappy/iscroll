@@ -181,7 +181,7 @@ var utils = (function () {
 
 	me.extend(me.eventType = {}, {
 		touchstart: 1,
-		touchmove: 1,
+		touchmove: (window.navigator.userAgent && window.navigator.userAgent.indexOf('Windows Phone 10.0') > -1) ? 3 : 1,
 		touchend: 1,
 
 		mousedown: 2,
@@ -314,6 +314,7 @@ var utils = (function () {
 
 	return me;
 })();
+
 function IScroll (el, options) {
 	this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
 	this.scroller = this.wrapper.children[0];
@@ -811,7 +812,7 @@ IScroll.prototype = {
 
 // INSERT POINT: _refresh
 
-	},	
+	},
 
 	on: function (type, fn) {
 		if ( !this._events[type] ) {
@@ -1041,6 +1042,7 @@ IScroll.prototype = {
 
 		return { x: x, y: y };
 	},
+
 	_initIndicators: function () {
 		var interactive = this.options.interactiveScrollbars,
 			customStyle = typeof this.options.scrollbars != 'string',
